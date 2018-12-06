@@ -10,19 +10,14 @@ from multiprocessing import Process
 #lock to serialize console output
 #lock = threading.Lock()
 
-def wait(time_sec):
-	time.sleep(time_sec) #is in seconds
-
 def subprocess_cmd(command):
-
-	wait(1)
 	print("new task started")
 	if command == 1:
 		time.sleep(10)
 		print("did nothing for 10")
 		response = 1
 	elif command == 2:
-		wait(20)
+		time.sleep(20)
 		print("waited 20")
 		response = 2
 	else:
