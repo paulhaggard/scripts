@@ -69,12 +69,15 @@ if __name__ == '__main__':
     #time.sleep(5)
 
     get_count()
-    return_val = watch_count()
-    if return_val == 1:
-        print("ended loop on 1")
-    else: 
-        print("ended loop")
-        print(return_val)
+    while True:
+        return_val = watch_count()
+        print("this runs after watchcount codeline")
+        if return_val == 1:
+            print("ended loop on 1")
+            get_count()
+        else: 
+            print("ended loop")
+            print(return_val)
 
 
     time.sleep(10)
