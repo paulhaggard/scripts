@@ -3,6 +3,8 @@ from multiprocessing import Process
 import time
 from watch4change import subprocess_cmd
 
+process_pic
+
 def loop_a():
 	while 1:
 		time.sleep(1)
@@ -15,10 +17,18 @@ def loop_b():
 		print('waited {}'.format(count))
 		count = count + 1
 
+def picture_viewer():
+    subprocess_cmd("sudo fbi -a -noverbose -t 5 /home/displayboard/ftp/files/Host_0/*.jpg")
+    
 def run_picture_viewer():
-	print("waiting to launch picture viewer for 0")
-	time.sleep(0)
-	subprocess_cmd("sudo fbi -a -noverbose -t 5 /home/displayboard/ftp/files/Host_0/*.jpg")
+    global process_pic
+    process_pic = Process(target=picture_viewer)
+    process_pic.start()
+
+def kill_picture_viewer():
+    global process_pic
+    check_kill_proc("fbi")
+    process_pic.terminate()
 
 def check_kill_proc(pstring):
 	for line in os.popen("ps a | grep " + pstring + " | grep -v grep"):
@@ -28,26 +38,15 @@ def check_kill_proc(pstring):
 		subprocess_cmd(pid_string)
 
 if __name__ == '__main__':
-	#Process(target=loop_a).start()
-	proc_counter = Process(target=loop_b)
-	proc_counter.start()
-	#Process(target=run_picture_viewer).start()
-	proc_pic = Process(target=run_picture_viewer)
-	proc_pic2 = Process(target=run_picture_viewer)
-	proc_pic.start()
+	
+    time.sleep(3)
+    run_picture_viewer()
 	print("sleep 10 first")
 	time.sleep(10)
 	print("sleep 10 first ended")
-	check_kill_proc("fbi")
-	proc_pic.terminate()
+	kill_picture_viewer()
 	time.sleep(10)
-	check_kill_proc("fbi")
+	run_picture_viewer()
 	time.sleep(10)
-	proc_pic.start()
+	kill_picture_viewer()
 	time.sleep(5)
-	proc_pic2.start()
-	time.sleep(3)
-	check_kill_proc("fbi")
-	check_kill_proc("fbi")
-	check_kill_proc("fbi")
-
