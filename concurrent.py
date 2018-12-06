@@ -3,12 +3,27 @@ from multiprocessing import Process
 import time
 from watch4change import subprocess_cmd
 
-process_pic = Process()
+process_pic = Process(target=picture_viewer)
+process_count = Process(target=watch_count)
+file_count = 0
 
-def loop_a():
-	while 1:
-		time.sleep(1)
-		print("waited 1")
+def get_count():
+    time.sleep(1)
+    global file_count
+    file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
+    print("file count is:")
+    print(file_count)
+
+def watch_count():
+    while 1: 
+        time.sleep(10)
+    
+        #global file_count
+        file_count_new = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
+        if file_count != file_count_new:
+            print("file count changed")
+        else: 
+            print("file count same")
 
 def loop_b():
 	count = 0
@@ -28,6 +43,7 @@ def run_picture_viewer():
 def kill_picture_viewer():
     global process_pic
     check_kill_proc("fbi")
+    time.sleep(2)
     process_pic.terminate()
 
 def check_kill_proc(pstring):
@@ -39,14 +55,20 @@ def check_kill_proc(pstring):
 
 if __name__ == '__main__':
 	
-    time.sleep(3)
-    run_picture_viewer()
-    print("sleep 10 first")
-    time.sleep(10)
-    print("sleep 10 first ended")
-    kill_picture_viewer()
-    time.sleep(10)
-    run_picture_viewer()
-    time.sleep(10)
-    kill_picture_viewer()
-    time.sleep(5)
+    #time.sleep(3)
+    #run_picture_viewer()
+    #print("sleep 10 first")
+    #time.sleep(10)
+    #print("sleep 10 first ended")
+    #kill_picture_viewer()
+    #time.sleep(10)
+    #run_picture_viewer()
+    #time.sleep(10)
+    #kill_picture_viewer()
+    #time.sleep(5)
+
+    get_count()
+    time.sleep(2)
+    process_count.start()
+    time.sleep(200)
+    process_count.terminate()
