@@ -1,9 +1,11 @@
-a_var = 'global variable'
+import configparser
 
-def a_func():
-    global a_var
-    a_var = 'local variable'
-    print(a_var, '[ a_var inside a_func() ]')
-    
-a_func()
-print(a_var, '[ a_var outside a_func() ]')
+config = configparser.ConfigParser()
+config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
+if 'bitbucket.org' in config:
+    print("bitbucket found")
+else: print("bitbucket not found")
+
+slideshow = config['slideshow']
+slideshow['Set_switch']
+print(slideshow['Slide_time'])

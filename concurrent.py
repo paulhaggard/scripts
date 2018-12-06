@@ -1,8 +1,14 @@
 import os, signal
 import subprocess
 import time
+import configparser
 from multiprocessing import Process
 
+config = configparser.ConfigParser()
+config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
+'bitbucket.org' in config
+topsecret = config['topsecret.server.com']
+topsecret['Port']
 process_pic = Process()
 file_count = 0
 
