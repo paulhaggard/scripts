@@ -14,7 +14,6 @@ dataset = config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
 slide_time = 8
 
 
-
 def subprocess_cmd(command):
 	if command == 1:
 		time.sleep(10)
