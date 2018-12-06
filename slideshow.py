@@ -10,24 +10,26 @@ from multiprocessing import Process
 process_pic = Process()
 file_count = 0
 config = configparser.ConfigParser()
-dataset = config.read('/home/displayboard/ftp/files/Host_0/cfg1.ini')
+dataset = config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
 slide_time = "8"
-
+#vcgencmd display_power 0
+#vcgencmd display_power 1
+#https://www.screenly.io/blog/2017/07/02/how-to-automatically-turn-off-and-on-your-monitor-from-your-raspberry-pi/
 
 def subprocess_cmd(command):
-	if command == 1:
-		time.sleep(10)
-		print("did nothing for 10")
-		response = 1
-	elif command == 2:
-		time.sleep(20)
-		print("waited 20")
-		response = 2
-	else:
-		process = subprocess.Popen((command), stdout=subprocess.PIPE, shell=True)
-		proc_stdout = process.communicate()[0].strip()
-		response = proc_stdout
-	return response
+    if command == 1:
+        time.sleep(10)
+        print("did nothing for 10")
+        response = 1
+    elif command == 2:
+        time.sleep(20)
+        print("waited 20")
+        response = 2
+    else:
+        process = subprocess.Popen((command), stdout=subprocess.PIPE, shell=True)
+        proc_stdout = process.communicate()[0].strip()
+        response = proc_stdout
+    return response
 
 def watch_count():
     while True: 
@@ -60,11 +62,11 @@ def kill_picture_viewer():
     process_pic.terminate()
     
 def check_kill_proc(pstring):
-	for line in os.popen("ps a | grep " + pstring + " | grep -v grep"):
-		fields = line.split()
-		pid = fields[0]
-		pid_string = "sudo kill " + pid
-		subprocess_cmd(pid_string)
+    for line in os.popen("ps a | grep " + pstring + " | grep -v grep"):
+        fields = line.split()
+        pid = fields[0]
+        pid_string = "sudo kill " + pid
+        subprocess_cmd(pid_string)
 
 if __name__ == '__main__':
     if len(dataset) <= 0:
