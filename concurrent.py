@@ -1,4 +1,4 @@
-import os, signal
+import os, signal, asyncio
 from multiprocessing import Process
 import time
 from watch4change import subprocess_cmd
@@ -78,13 +78,15 @@ if __name__ == '__main__':
 
     get_count()
     time.sleep(2)
-    running = process_count.start()
-    while running != 1:
+    async def main_ao():
+        running = asyncio.create_task(process_count.start())
+        await running
+        while running != 1:
         
-        time.sleep(5)
-        print("waiting")
-        print(running)
-        
+            time.sleep(5)
+            print("waiting")
+            print(running)
+    asyncio.run(main_ao())    
     print("done waiting")
     time.sleep(45)
     process_count.terminate()
