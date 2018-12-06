@@ -21,7 +21,6 @@ def watch_count():
 
 def get_count():
     global file_count
-    time.sleep(1)
     file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
     print("file count is:")
     print(file_count)
