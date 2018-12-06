@@ -4,14 +4,8 @@ import time
 from watch4change import subprocess_cmd
 
 process_pic = Process()
-process_count = Process()
 file_count = 0
 
-def kill_watch_count():
-    global process_count
-    process_count.terminate()
-    print(process_count.is_alive())
-    time.sleep(2)
 
 def watch_count():
     while True: 
@@ -26,9 +20,7 @@ def watch_count():
             print("file count same")
 
 def get_count():
-    global process_count
     global file_count
-    process_count = Process(target=watch_count)
     time.sleep(1)
     file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
     print("file count is:")
@@ -77,18 +69,12 @@ if __name__ == '__main__':
     #time.sleep(5)
 
     get_count()
-    time.sleep(2)
-    async def main_ao():
-        running = asyncio.create_task(process_count.start())
-        await running
-        while running != 1:
-        
-            time.sleep(5)
-            print("waiting")
-            print(running)
-    asyncio.run(main_ao())
-    print("done waiting")
-    time.sleep(45)
-    process_count.terminate()
-    print(process_count.is_alive())
+    return_val = watch_count()
+    if return_val == 1:
+        print("ended loop on 1")
+    else: 
+        print("ended loop")
+        print(return_val)
+
+
     time.sleep(10)
