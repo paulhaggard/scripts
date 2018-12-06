@@ -11,7 +11,6 @@ from multiprocessing import Process
 #lock = threading.Lock()
 
 def subprocess_cmd(command):
-	print("new task started")
 	if command == 1:
 		time.sleep(10)
 		print("did nothing for 10")
