@@ -1,7 +1,16 @@
-import configparser
+import sys, configparser
 
 config = configparser.ConfigParser()
-config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
+try:
+    config.read('/home/displayboard/ftp/files/Host_0/cfg1.ini')
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+
+try:
+    config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+
 if 'bitbucket.org' in config:
     print("bitbucket found")
 else: print("bitbucket not found")
