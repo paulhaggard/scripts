@@ -3,16 +3,9 @@ from multiprocessing import Process
 import time
 from watch4change import subprocess_cmd
 
-process_pic = Process(target=picture_viewer)
-process_count = Process(target=watch_count)
+process_pic = Process()
+process_count = Process()
 file_count = 0
-
-def get_count():
-    time.sleep(1)
-    global file_count
-    file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
-    print("file count is:")
-    print(file_count)
 
 def watch_count():
     while 1: 
@@ -24,6 +17,14 @@ def watch_count():
             print("file count changed")
         else: 
             print("file count same")
+
+def get_count():
+    process_count = Process(target=watch_count)
+    time.sleep(1)
+    global file_count
+    file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
+    print("file count is:")
+    print(file_count)
 
 def loop_b():
 	count = 0
