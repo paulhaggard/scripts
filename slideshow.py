@@ -45,7 +45,8 @@ def get_count():
     file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
 
 def picture_viewer():
-    subprocess_cmd("sudo fbi -a -noverbose -t {slide_time} /home/displayboard/ftp/files/Host_0/*.jpg")
+    string_builder = "sudo fbi -a -noverbose -t " + slide_time + " /home/displayboard/ftp/files/Host_0/*.jpg"
+    subprocess_cmd(string_builder)
     
 def run_picture_viewer():
     global process_pic
