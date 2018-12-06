@@ -79,9 +79,13 @@ if __name__ == '__main__':
     get_count()
     time.sleep(2)
     running = process_count.start()
+    running2 = process_count()
     while running != 1:
+        global running
         time.sleep(5)
         print("waiting")
+        print(running)
+        print(running2)
     print("done waiting")
     time.sleep(45)
     process_count.terminate()
