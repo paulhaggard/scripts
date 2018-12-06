@@ -19,4 +19,7 @@ fi
 
 iptables-restore < /etc/iptables.ipv4.nat
 
+#Suppress Kernel Messages
+dmesg --console-off
+
 exit 0

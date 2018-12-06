@@ -25,7 +25,7 @@ ConditionPathExists=/dev/tty0
 
 [Service]
 # the VT is cleared by TTYVTDisallocate
-ExecStart=-/sbin/agetty --autologin pi --noclear %I $TERM
+ExecStart=-/sbin/agetty --skip-login --noclear --noissue --login-options "-f pi" %I $TERM
 Type=idle
 Restart=always
 RestartSec=0
