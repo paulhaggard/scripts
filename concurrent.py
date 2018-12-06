@@ -3,7 +3,7 @@ from multiprocessing import Process
 import time
 from watch4change import subprocess_cmd
 
-process_pic
+process_pic = Process()
 
 def loop_a():
 	while 1:
