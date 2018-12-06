@@ -43,8 +43,8 @@ def run_picture_viewer():
 def kill_picture_viewer():
     global process_pic
     check_kill_proc("fbi")
-    time.sleep(2)
     process_pic.terminate()
+    print("\n"*100)
 
 def check_kill_proc(pstring):
 	for line in os.popen("ps a | grep " + pstring + " | grep -v grep"):
@@ -73,7 +73,7 @@ if __name__ == '__main__':
         return_val = watch_count()
         print("this runs after watchcount codeline")
         if return_val == 1:
-            print("\n"*100)
+            
             get_count()
             kill_picture_viewer()
         else: 
