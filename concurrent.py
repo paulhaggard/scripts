@@ -70,14 +70,17 @@ if __name__ == '__main__':
 
     get_count()
     while True:
+        run_picture_viewer()
         return_val = watch_count()
         print("this runs after watchcount codeline")
         if return_val == 1:
             print("ended loop on 1")
             get_count()
+            kill_picture_viewer()
         else: 
             print("ended loop")
             print(return_val)
+            break
 
 
     time.sleep(10)
