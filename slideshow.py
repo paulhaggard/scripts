@@ -10,7 +10,7 @@ from multiprocessing import Process
 process_pic = Process()
 file_count = 0
 config = configparser.ConfigParser()
-dataset = config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
+dataset = config.read('/home/displayboard/ftp/files/Host_0/cfg1.ini')
 slide_time = "8"
 
 
