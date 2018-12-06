@@ -23,7 +23,7 @@ def subprocess_cmd(command):
 
 def watch_count():
     while True: 
-        time.sleep(15)
+        time.sleep(20)
         file_count_new = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
         if file_count != file_count_new:
             print("file count changed")
@@ -37,10 +37,11 @@ def get_count():
     file_count = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
 
 def picture_viewer():
-    subprocess_cmd("sudo fbi -a -noverbose -t 5 /home/displayboard/ftp/files/Host_0/*.jpg")
+    subprocess_cmd("sudo fbi -a -noverbose -t 8 /home/displayboard/ftp/files/Host_0/*.jpg")
     
 def run_picture_viewer():
     global process_pic
+    print("\n"*100)
     process_pic = Process(target=picture_viewer)
     process_pic.start()
 
