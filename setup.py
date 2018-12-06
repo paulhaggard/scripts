@@ -90,10 +90,11 @@ print("5. Disable Silent Boot & AutoLogin")
 print("6. vsftpd install")
 print("\n\nEnter Choice: ")
 startup = 1
+
 while startup == 1:
     answer = input()
-    if answer == "1" : 
-        handle_1() 
+    if answer == "1" :
+        handle_1()
         startup = 0
         break
     elif answer == "2" : handle_2()
