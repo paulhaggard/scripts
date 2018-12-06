@@ -8,11 +8,11 @@ process_count = Process()
 file_count = 0
 
 def watch_count():
-    while 1: 
-        time.sleep(10)
-    
+    while True: 
+        time.sleep(5)
+        print("file watch running")
         #global file_count
-        file_count_new = int(subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l"))
+        file_count_new = subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l")
         if file_count != file_count_new:
             print("file count changed")
         else: 
@@ -70,6 +70,13 @@ if __name__ == '__main__':
 
     get_count()
     time.sleep(2)
+    file_count_new = subprocess_cmd("cd /home/displayboard/ftp/files/Host_0; ls | wc -l")
+    if file_count != file_count_new:
+        print("file count changed")
+    else: 
+        print("file count same")
+    time.sleep(10)
     process_count.start()
-    time.sleep(200)
+    time.sleep(30)
     process_count.terminate()
+    time.sleep(10)
