@@ -11,7 +11,7 @@ process_pic = Process()
 file_count = 0
 config = configparser.ConfigParser()
 dataset = config.read('/home/displayboard/ftp/files/Host_0/cfg.ini')
-slide_time = 8
+slide_time = "8"
 
 
 def subprocess_cmd(command):
@@ -75,7 +75,7 @@ if __name__ == '__main__':
             print("slideshow cfg found")
             slideshow = config['slideshow']
             slideshow['Set_switch']
-            slide_time = int(slideshow['Slide_time'])
+            slide_time = slideshow['Slide_time']
             return_val = 0
         else: 
             print("[slideshow] not found")
