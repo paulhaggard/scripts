@@ -10,15 +10,16 @@ if len(dataset) <= 0:
     return_val = 1
 else:
     if 'slideshow' in config:
+        print("slideshow cfg found")
+        slideshow = config['slideshow']
+        slideshow['Set_switch']
+        print(slideshow['Slide_time'])
+        subprocess_cmd("mkdir /home/pi/scripts/configs")
+        subprocess_cmd("sudo cp /etc/dhcpcd.conf.ap /home/pi/scripts/configs/dhcpcd.conf.ap")
+        subprocess_cmd("sudo cp /etc/dhcpcd.conf.client /home/pi/scripts/configs/dhcpcd.conf.client")
+        subprocess_cmd("sudo cp /etc/dnsmasq.conf.orig /home/pi/scripts/configs/dnsmasq.conf.orig")
+        subprocess_cmd("sudo cp /etc/dnsmasq.conf.ap /home/pi/scripts/configs/dnsmasq.conf.ap")
+        return_val = 0
+    else: 
         print("[slideshow] not found")
-    else: print("slideshow cfg found")
-
-    slideshow = config['slideshow']
-    slideshow['Set_switch']
-    print(slideshow['Slide_time'])
-    subprocess_cmd("mkdir /home/pi/scripts/configs")
-    subprocess_cmd("sudo cp /etc/dhcpcd.conf.ap /home/pi/scripts/configs/dhcpcd.conf.ap")
-    subprocess_cmd("sudo cp /etc/dhcpcd.conf.client /home/pi/scripts/configs/dhcpcd.conf.client")
-    subprocess_cmd("sudo cp /etc/dnsmasq.conf.orig /home/pi/scripts/configs/dnsmasq.conf.orig")
-    subprocess_cmd("sudo cp /etc/dnsmasq.conf.ap /home/pi/scripts/configs/dnsmasq.conf.ap")
-    return_val = 0
+        return_val = 1
