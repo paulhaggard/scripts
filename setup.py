@@ -54,15 +54,15 @@ def handle_4():
         print("https://raspberrypi.stackexchange.com/questions/59310/remove-boot-messages-all-text-in-jessie") 
         print("disabling autologin. silent boot setup.")
         subprocess_cmd("sudo cp /boot/cmdline.txt /boot/cmdline.txt.orig")
-        subprocess_cmd("sudo cp /configs/boot.cmdline.txt /boot/cmdline.txt")
+        subprocess_cmd("sudo cp configs/boot.cmdline.txt /boot/cmdline.txt")
 
         subprocess_cmd("sudo cp /etc/rc.local /etc/rc.local.orig")
-        subprocess_cmd("sudo cp /configs/etc.rc.local /etc/rc.local")
+        subprocess_cmd("sudo cp configs/etc.rc.local /etc/rc.local")
 
         subprocess_cmd("sudo cp /etc/systemd/system/autologin\@.service /etc/systemd/system/autologin\@.service.orig")
-        subprocess_cmd("sudo cp /configs/autologin\@.service /etc/systemd/system/autologin\@.service")
+        subprocess_cmd("sudo cp configs/autologin\@.service /etc/systemd/system/autologin\@.service")
 
-        subprocess_cmd("sudo cp /configs/.hushlogin ~/.hushlogin")
+        subprocess_cmd("sudo cp configs/.hushlogin ~/.hushlogin")
     else: pass
 
 def handle_5():
@@ -82,7 +82,7 @@ def handle_5():
 
 print("\n" * 100)
 print("What would you like to set up?\n\n")
-print("1. Enable AP Mode\n")
+print("1. Enable AP Mode")
 print("2. Enable WiFi Client Mode")
 print("3. Install FrameBufferImage software")
 print("4. Enable Silent Boot & AutoLogin")
