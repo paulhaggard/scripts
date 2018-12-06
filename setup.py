@@ -24,7 +24,7 @@ def handle_1():
 		subprocess_cmd("sudo service hostapd restart")
 		subprocess_cmd("sudo service dnsmasq restart")
 def handle_2():
-	print("Would you like to disable AP mode and enable client mode?")
+	print("Would you like to disable AP mode and enable client mode? Y/n")
 	test = yn_eval(input())
 	if respond(test) == 0:
 		print("Switching to WiFi Client...")
@@ -32,7 +32,7 @@ def handle_2():
 		subprocess_cmd("sudo cp /etc/dhcpcd.conf.client /etc/dhcpcd.conf")
 		subprocess_cmd("sudo service hostapd stop")
 		subprocess_cmd("sudo service dnsmasq stop")
-		subprocess_cmd("sudo service dhcpcd restart")
+		print("reboot.")
 
 print("\n"*100)
 print("What would you like to set up?\n\n")
